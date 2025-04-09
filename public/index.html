@@ -1,40 +1,59 @@
 <!DOCTYPE html>
-<html>
+<html lang="en">
   <head>
     <meta charset="UTF-8" />
-    <title>Local Image Gallery</title>
+    <title>QI2501A Photo Gallery</title>
+    <!-- Include Tailwind CSS from CDN -->
+    <script src="https://cdn.tailwindcss.com"></script>
+    <!-- Include Google Font "Poppins" for a modern look -->
+    <link
+      href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;600;700&display=swap"
+      rel="stylesheet"
+    />
+    <!-- Optional custom styles -->
     <style>
       body {
-        font-family: Arial, sans-serif;
-        margin: 20px;
-      }
-      .gallery {
-        display: flex;
-        flex-wrap: wrap;
-        gap: 10px;
-      }
-      .gallery img {
-        max-width: 300px;
-        border-radius: 5px;
+        font-family: "Poppins", sans-serif;
       }
     </style>
   </head>
-  <body>
-    <h1>My Local Image Gallery</h1>
-    <form
-      id="uploadForm"
-      action="/upload"
-      method="POST"
-      enctype="multipart/form-data"
-    >
-      <input type="file" name="image" required />
-      <button type="submit">Upload Image</button>
-    </form>
-    <hr />
-    <div id="gallery" class="gallery">
-      <!-- Images will be loaded here -->
+  <body class="bg-gradient-to-r from-gray-100 to-gray-300">
+    <div class="container mx-auto px-4 py-8">
+      <!-- Heading -->
+      <h1 class="text-5xl font-extrabold text-center text-blue-700 mb-8">
+        QI2501A Photo Gallery
+      </h1>
+      <!-- Upload Form -->
+      <div class="mb-8 flex justify-center">
+        <form
+          id="uploadForm"
+          action="/upload"
+          method="POST"
+          enctype="multipart/form-data"
+          class="flex flex-col items-center bg-white p-6 rounded-xl shadow-md"
+        >
+          <input
+            type="file"
+            name="image"
+            required
+            class="mb-4 p-2 border border-gray-300 rounded focus:outline-none focus:ring-2 focus:ring-blue-500"
+          />
+          <button
+            type="submit"
+            class="bg-blue-600 hover:bg-blue-700 text-white font-bold py-3 px-8 rounded-xl shadow-lg transform hover:scale-105 transition-all duration-200"
+          >
+            Upload Image
+          </button>
+        </form>
+      </div>
+      <!-- Gallery Grid -->
+      <div
+        id="gallery"
+        class="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-4 gap-6"
+      ></div>
     </div>
 
+    <!-- JavaScript to load images via API -->
     <script>
       async function loadImages() {
         try {
@@ -45,13 +64,16 @@
           images.forEach((url) => {
             const img = document.createElement("img");
             img.src = url;
+            img.alt = "Gallery Image";
+            // Tailwind classes for professional styling
+            img.className =
+              "w-full h-auto rounded-s shadow-md hover:shadow-xl transition-shadow duration-300";
             gallery.appendChild(img);
           });
         } catch (error) {
           console.error("Error loading images:", error);
         }
       }
-
       // Load images on page load
       window.onload = loadImages;
     </script>

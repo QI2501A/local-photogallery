@@ -1,0 +1,5 @@
+/* public/styles.css */
+body {
+  /* Example: Smooth scrolling */
+  scroll-behavior: smooth;
+}
