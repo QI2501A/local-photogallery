@@ -48,5 +48,5 @@ A local image gallery web application built with **Node.js**, **Express**, **Mul
 1. **Clone the Repository:**
 
    ```bash
-   git clone <repository-url>
+   git clone https://github.com/QI2501A/local-photogallery.git
    cd local-photogallery
