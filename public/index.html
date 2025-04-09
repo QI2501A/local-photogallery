@@ -1,0 +1,59 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <meta charset="UTF-8" />
+    <title>Local Image Gallery</title>
+    <style>
+      body {
+        font-family: Arial, sans-serif;
+        margin: 20px;
+      }
+      .gallery {
+        display: flex;
+        flex-wrap: wrap;
+        gap: 10px;
+      }
+      .gallery img {
+        max-width: 300px;
+        border-radius: 5px;
+      }
+    </style>
+  </head>
+  <body>
+    <h1>My Local Image Gallery</h1>
+    <form
+      id="uploadForm"
+      action="/upload"
+      method="POST"
+      enctype="multipart/form-data"
+    >
+      <input type="file" name="image" required />
+      <button type="submit">Upload Image</button>
+    </form>
+    <hr />
+    <div id="gallery" class="gallery">
+      <!-- Images will be loaded here -->
+    </div>
+
+    <script>
+      async function loadImages() {
+        try {
+          const response = await fetch("/api/images");
+          const images = await response.json();
+          const gallery = document.getElementById("gallery");
+          gallery.innerHTML = ""; // Clear existing images
+          images.forEach((url) => {
+            const img = document.createElement("img");
+            img.src = url;
+            gallery.appendChild(img);
+          });
+        } catch (error) {
+          console.error("Error loading images:", error);
+        }
+      }
+
+      // Load images on page load
+      window.onload = loadImages;
+    </script>
+  </body>
+</html>
