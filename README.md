@@ -1,4 +1,4 @@
-# QI2501A Photo Gallery 📸
+# Photo Gallery 📸
 
 A local image gallery web application built with **Node.js**, **Express**, **Multer**, **Sharp**, and **Tailwind CSS**. This project allows users to upload images that are automatically converted to JPEG format and displayed in a responsive, modern photo gallery.
 
